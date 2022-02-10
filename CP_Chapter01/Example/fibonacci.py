@@ -1,8 +1,10 @@
+# %%
 from typing import Dict, Tuple
 from functools import lru_cache
 from typing import Generator
 
 
+# %%
 # (2) Simple Fibonacci
 def fib2(n: int) -> int:
     if n < 2:
@@ -54,6 +56,7 @@ def fib6(n: int) -> Generator[int, None, None]:
         yield v_next
 
 
+# %%
 if __name__ == "__main__":
     # fib2(5)  -> 15
     # fib2(10) -> 177
