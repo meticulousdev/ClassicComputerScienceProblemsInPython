@@ -1,8 +1,12 @@
-from typing import TypeVar
+from typing import TypeVar 
 
 
-T = TypeVar('N', int, float)
+T = TypeVar('T', int, float) 
+
+
+def add(a: T, b: T) -> T: 
+    return a + b
 
 
 if __name__ == "__main__":
-    print(f"T: {T.__name__}")
+    print(add("AAA", "BBB"))
