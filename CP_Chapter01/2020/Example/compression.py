@@ -8,8 +8,8 @@ class CompressedGene:
         # - 0으로 시작하면 A 같은거 안들어감
         for nucleotide in gene.upper():
             self.bit_string <<= 2
-            bintype_bit_string = bin(self.bit_string)
-            print(bintype_bit_string)
+            # bintype_bit_string = bin(self.bit_string)
+            # print(bintype_bit_string)
             if nucleotide == "A":
                 self.bit_string |= 0b00
             elif nucleotide == "C":
