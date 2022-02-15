@@ -34,6 +34,14 @@ if __name__ == "__main__":
     print(f"type: {type(generator_y(1, 5))}")
     print(f"return: {generator_y(1, 5)}")
 
+    gen = generator_y(1, 5)
+    # print(next(gen))
+    # print(next(gen))
+    # print(next(gen))
+    # print(next(gen))
+    # print(next(gen))
+    # print(next(gen))
+
     # https://stackoverflow.com/questions/19302530/whats-the-purpose-of-send-function-on-python-generators
     print("Generator[int, int, None]")
     gen = generator_ys(1)
