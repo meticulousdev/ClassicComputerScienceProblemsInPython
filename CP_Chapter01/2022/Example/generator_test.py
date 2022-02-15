@@ -7,8 +7,9 @@ def generator_y(start: int, end: int) -> Generator[int, None, None]:
         yield i
 
 
-def generator_ys(start: int) -> Generator[int, float, None]:
+def generator_ys(start: int) -> Generator[int, int, None]:
     end = yield
+    print(end)
     for i in range(start, end + 1):
         yield i
 

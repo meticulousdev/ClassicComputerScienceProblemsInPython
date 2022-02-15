@@ -15,9 +15,12 @@ def fib2(n: int) -> int:
 # (3) Memoization
 # from typing import Dict
 memo: Dict[int, int] = {0: 0, 1: 1}
+cnt: int = 0
 
 
 def fib3(n: int) -> int:
+    # cnt = cnt + 1
+    # print(cnt)
     if n not in memo:
         memo[n] = fib3(n - 1) + fib3(n - 2)
     return memo[n]
