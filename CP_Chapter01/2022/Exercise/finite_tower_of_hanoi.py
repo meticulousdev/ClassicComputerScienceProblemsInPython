@@ -79,30 +79,30 @@ def multiple_hanoi(nt: int, nd: int) -> List:
     while 0 in nd_mv:
         nd_mv.remove(0)
 
+    # 책에서의 재귀 조건 3단계
+    # 1. 상단의 n-1개 디스크(가장 작은 디스크와 중간 디스크)를 탑 C를 이용하여 탑 A에서 탑 B(임시)로 이동한다.
+    # 2. 가장 큰 디스크를 A에서 C로 이동한다.
+    # 3. 상단의 n-1개의 디스크를 탑 A를 이용하여 탑 B에서 탑 C로 이동한다.
+    
     # Hanoi Tower : Recursion and for loop
     # 분배된 각 탑에서 최종 위치로 이동하기 위한 동작들
     # 1. 시작 탑(0)에서 마지막 탑(-1)을 제외한 모든 탑에 원반 분배
-    # 2. 제일 큰 원반을 중간 탑(1)을 거쳐서 마지막 탑으로 이동
+    # 2. 제일 큰 원반을 중간 탑(1)을 거쳐서 마지막 탑으로 이동 
+    # - 3개 일때는 어떻게 되는지?: 이동가능한 디스크의 수가 1개이기 때문에 바로 end > begin으로
     # 3. 각각의 탑에 있던 원반을 빈 탑인 시작 탑(0)을 거쳐서 마지막 탑으로 이동
+
     temp = 1
     rep = len(nd_mv)
 
     for i in range(rep):
         hanoi(towers[0], towers[i + 1], towers[-1], nd_mv[i])
 
-    # for i in range(nt):
-    #     print(towers[i])
-    # print()
-
     hanoi(towers[0], towers[-1], towers[temp], 1)
-
-    # for i in range(nt):
-    #     print(towers[i])
-    # print()
 
     for i in range(rep):
         hanoi(towers[rep - i], towers[-1], towers[0], nd_mv[(rep - 1) - i])
 
+    # print towers status
     # for i in range(nt):
     #     print(towers[i])
     # print()
@@ -121,8 +121,8 @@ def check_hanoi_result(towers: List, nt: int, nd: int) -> None:
 
 
 if __name__ == "__main__":
-    for idx in range(3, 20):
-        for jdx in range(3, 20):
+    for idx in range(3, 21):
+        for jdx in range(3, 21):
             num_towers: int = idx
             num_discs: int = jdx
             ret_towers: List = multiple_hanoi(num_towers, num_discs)
