@@ -1,6 +1,6 @@
 # Exercise 1.7 - 3
 # title   : Infinite tower of Hanoi
-# version : 1.0 (2020.08.03)
+# version : 2022.02.20.
 # author  : kobong
 from asyncio import protocols
 from typing import TypeVar, Generic, List
@@ -18,7 +18,8 @@ class Stack(Generic[T]):
 
     def pop(self) -> T:
         return self._container.pop()
-    
+
+    # check disk size
     def check(self) -> bool:
         len_container = len(self._container)
         if len_container > 1:
@@ -40,6 +41,7 @@ class Stack(Generic[T]):
 def hanoi(begin: Stack[int], end: Stack[int], temp: Stack[int], n: int) -> None:
     if n == 1:
         end.push(begin.pop())
+        # check each tower
         if begin.check() and temp.check() and end.check():
             pass
         else:
