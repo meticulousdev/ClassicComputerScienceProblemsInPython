@@ -16,7 +16,7 @@ def random_key(length: int) -> int:
 
 
 # encode() only available for str
-def encrypt(original: Any) -> Tuple[int, int]:
+def encrypt(original: str) -> Tuple[int, int]:
     original_bytes: bytes = original.encode()
     dummy: int = random_key(len(original_bytes))
     original_keys: int = int.from_bytes(original_bytes, "big")
@@ -43,7 +43,6 @@ def color_image_encrypt(ori_source: numpy.ndarray) -> Tuple[numpy.ndarray, numpy
                 # print(sys.getsizeof(ori_source[i][j][k]))
                 # print(sys.getsizeof(str(ori_source[i][j][k])))
                 arr_encrypted[i][j][k], arr_dummy[i][j][k] = encrypt(str(ori_source[i][j][k]))
-
     return arr_dummy, arr_encrypted
 # end of color_image_encrypt
 
