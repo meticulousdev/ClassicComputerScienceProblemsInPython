@@ -1,7 +1,5 @@
 from typing import Callable
 
-from grpc import Call
-
 
 def add(a: int, b: int) -> int:
     print("add function")
