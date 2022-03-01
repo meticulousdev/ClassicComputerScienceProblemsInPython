@@ -2,8 +2,7 @@ from enum import Enum
 from typing import List, NamedTuple, Callable, Optional
 import random
 from math import sqrt
-# generic_search가 포함된 폴더를 sources로 설정
-from CP_Chapter02.Example.generic_search import dfs, bfs, node_to_path, astar, Node
+from generic_search import dfs, bfs, node_to_path, astar, Node
 
 
 # Cell과 MazeLocation을 객체로 생성을 해둔다라?
