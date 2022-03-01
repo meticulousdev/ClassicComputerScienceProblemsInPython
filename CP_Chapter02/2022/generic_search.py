@@ -139,9 +139,6 @@ def dfs(initial: T, goal_test: Callable[[T], bool],
         current_node: Node[T] = frontier.pop()
         current_state: T = current_node.state
 
-        # goal_test를 그냥 이렇게 불러올 수 있나?
-        # -> 객체 만들고 전달
-        # 위에서 Callable을 통해서 정의
         if goal_test(current_state):
             return current_node
 
@@ -211,6 +208,7 @@ def node_to_path(node: Node[T]) -> List[T]:
     path.reverse()
     return path
 # end of note_to_path
+
 
 if __name__ == "__main__":
     print(linear_contains([1, 5, 15, 15, 15, 15, 20], 5))
