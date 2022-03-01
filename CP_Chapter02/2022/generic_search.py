@@ -18,6 +18,8 @@ def linear_contains(iterable: Iterable[T], key: T) -> bool:
 # end of function linear_contains
 
 
+# same results without bound and Protocol
+# C = TypeVar("C")
 C = TypeVar("C", bound="Comparable")
 
 
