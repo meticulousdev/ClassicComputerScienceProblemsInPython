@@ -1,10 +1,10 @@
 from typing import TypeVar, Protocol, Iterable, List
 
 
-T = TypeVar('T', bound="PrintVer01")
+T = TypeVar('T', bound="Comparable")
 
 
-class PrintVer01(Protocol):
+class Comparable(Protocol):
     def __eq__(self: T, other: T) -> bool:
         print("__eq__")
         return self == other
