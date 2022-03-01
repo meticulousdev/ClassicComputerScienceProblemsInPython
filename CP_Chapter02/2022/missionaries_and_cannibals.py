@@ -1,6 +1,7 @@
 # Exercise 2.5 - 3
 # title   : Missionaries and Cannibals
-# version : 1.0 (2020.08.13)
+# version : 2022.03.02
+# author  : kobong
 
 from __future__ import annotations
 from typing import List, Optional
