@@ -5,7 +5,7 @@ from math import sqrt
 from generic_search import dfs, bfs, node_to_path, astar, Node
 
 
-# Cell과 MazeLocation을 객체로 생성을 해둔다라?
+# TODO: class
 class Cell(str, Enum):
     EMPTY   = "O"
     BLOCKED = "X"
@@ -87,8 +87,7 @@ class Maze:
 # end of Maze
 
 
-# 작동 방법에 대한 이해
-# Capturing?
+# TODO: fist class function & capturing
 def euclidean_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
     def distance(ml: MazeLocation) -> float:
         xdist: int = ml.column - goal.column

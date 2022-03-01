@@ -21,8 +21,7 @@ def linear_contains(iterable: Iterable[T], key: T) -> bool:
 C = TypeVar("C", bound="Comparable")
 
 
-# Q 01. TypeVar bound
-# Q 02. Protocol 
+# TODO: TypeVar bound & Protocol 
 class Comparable(Protocol):
     def __eq__(self, other: Any) -> bool:
         ...
@@ -56,7 +55,7 @@ def binary_contains(sequence: Sequence[C], key: C) -> bool:
 # end of function binary_contains
 
 
-# Q 03. @property 
+# TODO: @property 
 class Stack(Generic[T]):
     def __init__(self) -> None:
         self._container: List[T] = []
@@ -115,7 +114,7 @@ class PriorityQueue(Generic[T]):
 # end of PriorityQueue
 
 
-# Q 04. Optional
+# TODO: Optional
 class Node(Generic[T]):
     def __init__(self, state: T, parent: Optional[Node],
                  cost: float = 0.0, heuristic: float = 0.0) -> None:
