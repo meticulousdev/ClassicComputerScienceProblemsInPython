@@ -124,6 +124,7 @@ class Node(Generic[T]):
 # end of Node
 
 
+# TODO: cnt or len?
 def dfs(initial: T, goal_test: Callable[[T], bool],
         successors: Callable[[T], List[T]]) -> Tuple[Optional[Node[T]], int]:
     frontier: Stack[Node[T]] = Stack()
@@ -203,7 +204,7 @@ def astar(initial: T, goal_test: Callable[[T], bool],
 
             if child not in explored or explored[child] > new_cost:
                 explored[child] = new_cost
-                frontier.push(Node(child, current_node, new_cost, heuristic(initial)))
+                frontier.push(Node(child, current_node, new_cost, heuristic(child)))
     return None, fail
 # end of astar
 

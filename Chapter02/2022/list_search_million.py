@@ -19,7 +19,7 @@ T = TypeVar('T')
 def list_generation(list_len: int) -> List[T]:
     ret_list: List[T] = []
     for i in range(list_len):
-        ret_list.append([i+1])
+        ret_list.append(i+1)
 
     return ret_list
 # end of list_generation
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     num: int = 10**6
     num_list: List[int] = list_generation(num)
 
-    num_test = [random.randint(1, num)]
+    num_test = random.randint(1, num)
     print("Search target                    : {}".format(num_test))
 
     v = [0 for _ in range(2)]

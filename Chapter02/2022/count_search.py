@@ -38,6 +38,7 @@ class Maze:
         # EMPTY
         self._grid: List[List[Cell]] = [[Cell.EMPTY for c in range(columns)] for r in range(rows)]
         # BLOCKED
+        # random.seed(42)
         self._randomly_fill(rows, columns, sparseness)
         # START AND GOAL
         self._grid[start.row][start.column] = Cell.START
