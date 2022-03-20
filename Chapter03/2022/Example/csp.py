@@ -6,11 +6,12 @@ D = TypeVar('D')
 
 
 # class Constraint(Generic[V, D], metaclass=ABCMeta):
-class Constraint(Generic[V, D], ABC):
+class Constraint(Generic[V, D]):
+# class Constraint(Generic[V, D], ABC):
     def __init__(self, variables: List[V]) -> None:
         self.variables = variables
 
-    @abstractmethod
+    # @abstractmethod
     def satisfied(self, assignment: Dict[V, D]) -> bool:
             ...
         
@@ -49,7 +50,7 @@ class CSP(Generic[V, D]):
         for value in self.domains[first]:
             local_assignment = assignment.copy()
             local_assignment[first] = value
-            if self.consistent[Dict[V, D]]:
+            if self.consistent(first, local_assignment):
                 result: Optional[Dict[V, D]] = self.backtracking_search(local_assignment)
                 if result is not None:
                     return result
