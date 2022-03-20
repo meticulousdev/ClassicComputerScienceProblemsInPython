@@ -159,7 +159,7 @@ if __name__ == "__main__":
                        [3, 2, 5, 1, 6, 4, 8, 7, 9],
                        [4, 9, 6, 5, 7, 8, 1, 3, 2]]
 
-    number_unknown = 35
+    number_unknown = 34
     # random.seed(42) / 34 > 28 / 35 > 30 (X)
     unsolved_sudoku = sudoku_generator(original_sudoku, number_unknown)
     
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     display_sudoku(original_sudoku)
     print()    
     
-    print("unsolved sudoku")
+    print("sudoku problem")
     display_sudoku(unsolved_sudoku)
     print()
 
@@ -191,11 +191,11 @@ if __name__ == "__main__":
     if solution is None:
         print("답을 찾을 수 없습니다.")
     else:
-        print("solved sudoku")
+        print("solution sudoku")
         solved_sudoku, diff_sudoku = sudoku_solution(original_sudoku, unsolved_sudoku, numbers, solution)
         display_sudoku(solved_sudoku)
         print()
-        print("diff sudoku")
+        print("diff. sudoku")
         display_sudoku(diff_sudoku)
 
-    print(f"걸린 시간: {time.time() - t_start}")
+    print(f"elapsed time: {time.time() - t_start}")
