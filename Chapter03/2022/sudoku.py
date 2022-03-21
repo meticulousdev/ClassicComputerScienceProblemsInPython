@@ -19,9 +19,10 @@ class SudokuLocation(NamedTuple):
 def sudoku_generator(sudoku: Sudoku, num_unknown: int) -> Sudoku:
     random.seed(42)
     new_sudoku = copy.deepcopy(sudoku)
-    row_list = [random.randint(0, 8) for _ in range(num_unknown)]
-    col_list = [random.randint(0, 8) for _ in range(num_unknown)]
-    for row, col in zip(row_list, col_list):
+    pos_list = [(i, j) for i in range(0, 9) for j in range(0, 9)]
+    for pos in random.sample(pos_list, num_unknown):
+        row = pos[0]
+        col = pos[1]
         new_sudoku[row][col] = 0
     return new_sudoku
 
@@ -29,7 +30,7 @@ def sudoku_generator(sudoku: Sudoku, num_unknown: int) -> Sudoku:
 def display_sudoku(sudoku: Sudoku) -> None:
     for row in range(0, 9):
         for col in range(0, 9):
-            print(f"{sudoku[row][col]}", end="")
+            print(f"{sudoku[row][col]} ", end="")
         print()
 
 
@@ -63,11 +64,11 @@ def generate_domain(sudoku: Sudoku, number: int) -> List[List[SudokuLocation]]:
                 rs = row - row % 3
                 re = rs + 3
                 cs = col - col % 3
-                ce = cs + 3               
+                ce = cs + 3
 
-                if ((number in sudoku[row]) or 
-                    (number in [i[col] for i in sudoku]) or
-                    (number in [sudoku[i][j] for i in range(rs, re) for j in range(cs, ce)])):
+                if ((number in sudoku[row]) or
+                        (number in [i[col] for i in sudoku]) or
+                        (number in [sudoku[i][j] for i in range(rs, re) for j in range(cs, ce)])):
                     continue
                 else:
                     domain.append([SudokuLocation(row, col)])
@@ -76,7 +77,7 @@ def generate_domain(sudoku: Sudoku, number: int) -> List[List[SudokuLocation]]:
 
 def sudoku_solution(original_sudoku: Sudoku,
                     sudoku: Sudoku, numbers: List[Tuple],
-                    solution: Dict[Tuple, List[SudokuLocation]]) -> Sudoku:
+                    solution: Dict[Tuple, List[SudokuLocation]]) -> Tuple[Sudoku, Sudoku]:
     for number in numbers:
         row = (solution[number])[0].row
         col = (solution[number])[0].column
@@ -94,7 +95,9 @@ class LocationSearchConstraint(Constraint[Tuple, List[SudokuLocation]]):
         super().__init__(numbers)
         self.numbers: List[Tuple] = numbers
 
-    def generate_constraint(self, rpos: int, cpos: int) -> Tuple[List[List[int]]]:
+    def generate_constraint(self, rpos: int, cpos: int) -> Tuple[List[SudokuLocation],
+                                                                 List[SudokuLocation],
+                                                                 List[SudokuLocation]]:
         skl_row: List[SudokuLocation] = []
         skl_col: List[SudokuLocation] = []
         skl_rec: List[SudokuLocation] = []
@@ -127,9 +130,9 @@ class LocationSearchConstraint(Constraint[Tuple, List[SudokuLocation]]):
                         return False
 
                     if key1[0] == key2[0]:
-                        if ((assignment[key2][0] in skl_row) or 
-                            (assignment[key2][0] in skl_col) or
-                            (assignment[key2][0] in skl_rec)):
+                        if ((assignment[key2][0] in skl_row) or
+                                (assignment[key2][0] in skl_col) or
+                                (assignment[key2][0] in skl_rec)):
                             return False
 
         return True
@@ -147,7 +150,7 @@ if __name__ == "__main__":
     #                    [0, 6, 0, 0, 0, 0, 2, 8, 0],
     #                    [0, 0, 0, 4, 1, 9, 0, 0, 5],
     #                    [0, 0, 0, 0, 8, 0, 0, 7, 9]]
-   
+
     # test
     original_sudoku = [[8, 3, 9, 6, 5, 7, 2, 1, 4],
                        [6, 7, 2, 9, 4, 1, 5, 8, 3],
@@ -159,14 +162,18 @@ if __name__ == "__main__":
                        [3, 2, 5, 1, 6, 4, 8, 7, 9],
                        [4, 9, 6, 5, 7, 8, 1, 3, 2]]
 
-    number_unknown = 34
-    # random.seed(42) / 34 > 28 / 35 > 30 (X)
+    number_unknown = 37
+    # random.seed(42) 
+    # - 30 (0.44 sec) 
+    # - 35 (53 sec) 
+    # - 36 (645 sec) 
+    # - 37 (?? sec)
     unsolved_sudoku = sudoku_generator(original_sudoku, number_unknown)
-    
+
     print(f"original sudoku")
     display_sudoku(original_sudoku)
-    print()    
-    
+    print()
+
     print("sudoku problem")
     display_sudoku(unsolved_sudoku)
     print()
@@ -191,11 +198,11 @@ if __name__ == "__main__":
     if solution is None:
         print("답을 찾을 수 없습니다.")
     else:
-        print("solution sudoku")
+        print("sudoku solution")
         solved_sudoku, diff_sudoku = sudoku_solution(original_sudoku, unsolved_sudoku, numbers, solution)
         display_sudoku(solved_sudoku)
         print()
-        print("diff. sudoku")
+        print("sudoku error")
         display_sudoku(diff_sudoku)
 
     print(f"elapsed time: {time.time() - t_start}")
