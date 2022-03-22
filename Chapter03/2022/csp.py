@@ -51,6 +51,7 @@ class CSP(Generic[V, D]):
         first: V = unassigned[0]
         for value in self.domains[first]:
             local_assignment = assignment.copy()
+            # local_assignment = assignment
             local_assignment[first] = value
             if self.consistent(first, local_assignment):
                 result: Optional[Dict[V, D]] = self.backtracking_search(local_assignment)
