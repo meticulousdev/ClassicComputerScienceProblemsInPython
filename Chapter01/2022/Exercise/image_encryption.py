@@ -64,7 +64,7 @@ def color_image_decrypt(key1: numpy.ndarray, key2: numpy.ndarray) -> numpy.ndarr
 # 인터넷에서 가져온 이미지의 경우 encrypt - decrypt 과정에서 용량 증가
 # 이 코드로 만든 이미지는 encrypt - decrypt 과정에서 용량 변화 X
 if __name__ == "__main__":
-    folder_path = "CP_Chapter01/2022/Exercise/"
+    folder_path = "Chapter01/2022/Exercise/"
     img = cv2.imread(folder_path + "Bob_src.jpeg", cv2.IMREAD_COLOR)
 
     test_dummy, test_encrypted = color_image_encrypt(img)
