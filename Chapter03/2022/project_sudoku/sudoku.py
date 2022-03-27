@@ -113,7 +113,7 @@ def draw_sudoku_board(sudoku: Sudoku,
             if num != 0:
                 plt.text(i + 0.4, j + 0.4, str(num))
     
-    plt.title(sudoku_title)
+    # plt.title(sudoku_title)
     plt.axis('off')
 
 
@@ -189,7 +189,7 @@ if __name__ == "__main__":
                        [3, 2, 5, 1, 6, 4, 8, 7, 9],
                        [4, 9, 6, 5, 7, 8, 1, 3, 2]]
 
-    number_unknown = 35
+    number_unknown = 30
     # random.seed(42) 
     # - 30 (0.44 sec) 
     # - 35 (53 sec) 
