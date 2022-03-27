@@ -6,7 +6,13 @@ import time
 import random
 import copy
 from typing import NamedTuple, List, Dict, Tuple, Optional
+import matplotlib.pyplot as plt
+
 from csp import CSP, Constraint
+
+plt.rcParams['font.family'] = 'Times New Roman'
+plt.rcParams.update({'mathtext.default':  'default'})
+plt.rcParams.update({'font.size': 16})
 
 Sudoku = List[List[int]]
 
@@ -90,6 +96,27 @@ def sudoku_solution(original_sudoku: Sudoku,
     return sudoku, diff_sudoku
 
 
+def draw_sudoku_board(sudoku: Sudoku, 
+                      sudoku_size: int, sudoku_title: str):
+    lb: SudokuLocation = SudokuLocation(0, 0)
+    rb: SudokuLocation = SudokuLocation(sudoku_size, 0)
+    lt: SudokuLocation = SudokuLocation(0, sudoku_size)
+
+    plt.figure(figsize=(7, 7))
+    for i in range(0, (sudoku_size + 1)):
+        plt.plot([lb.row, rb.row], [lb.column + i, rb.column + i], 'k')
+        plt.plot([lb.row + i, lt.row + i], [lb.column, lt.column], 'k')
+    
+    for i in range(0, sudoku_size):
+        for j in range(0, sudoku_size):
+            num = sudoku[(sudoku_size - 1) - i][j]
+            if num != 0:
+                plt.text(i + 0.4, j + 0.4, str(num))
+    
+    plt.title(sudoku_title)
+    plt.axis('off')
+
+
 class LocationSearchConstraint(Constraint[Tuple, List[SudokuLocation]]):
     def __init__(self, numbers: List[Tuple]) -> None:
         super().__init__(numbers)
@@ -162,7 +189,7 @@ if __name__ == "__main__":
                        [3, 2, 5, 1, 6, 4, 8, 7, 9],
                        [4, 9, 6, 5, 7, 8, 1, 3, 2]]
 
-    number_unknown = 37
+    number_unknown = 35
     # random.seed(42) 
     # - 30 (0.44 sec) 
     # - 35 (53 sec) 
@@ -176,6 +203,7 @@ if __name__ == "__main__":
 
     print("sudoku problem")
     display_sudoku(unsolved_sudoku)
+    draw_sudoku_board(unsolved_sudoku, len(unsolved_sudoku), "problem")
     print()
 
     novs: Dict[int, int] = number_of_variables(unsolved_sudoku)
@@ -204,5 +232,9 @@ if __name__ == "__main__":
         print()
         print("sudoku error")
         display_sudoku(diff_sudoku)
+    
+        draw_sudoku_board(solved_sudoku, len(solved_sudoku), "solution")
+        plt.show()
 
     print(f"elapsed time: {time.time() - t_start}")
+    
