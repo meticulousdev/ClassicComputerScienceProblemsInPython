@@ -1,20 +1,24 @@
 from typing import List
-import cv2
-import numpy as np
 
+import cv2
+
+import tensorflow as tf
+from keras import models, layers
+
+import numpy as np
+import matplotlib.pyplot as plt
 
 # reference: https://youbidan.tistory.com/19
 
 
 if __name__ == "__main__":
     folder_path = "Chapter03/2022/project_sudoku/"
-    file_path = folder_path + 'sudoku_board_01.png'
-    image_src = cv2.imread(file_path, cv2.IMREAD_COLOR)
-    image_gray = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
+    file_path = folder_path + 'sudoku_board.png'
+    image_src = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
     # cv2.imshow('image_gray', image_gray)
     # cv2.waitKey(0)
 
-    blur = cv2.GaussianBlur(image_gray, ksize=(3,3), sigmaX=0)
+    blur = cv2.GaussianBlur(image_src, ksize=(3,3), sigmaX=0)
     ret, thresh1 = cv2.threshold(blur, 127, 255, cv2.THRESH_BINARY)
     edged = cv2.Canny(blur, 10, 250)
     # cv2.imshow('Edged', edged)
@@ -51,6 +55,11 @@ if __name__ == "__main__":
     y_inc = int((y_max - y_min) / 9)
     x_inc = int((x_max - x_min) / 9)
 
+    # recognition
+    folder_path = "Chapter03/2022/project_sudoku/"
+    model_path = folder_path + 'mnist_tensorflow.h5'
+    mnist_model = models.load_model(model_path)
+
     y_new = y
     for i in range(1, 10):
         y_cur = y_new
@@ -61,9 +70,19 @@ if __name__ == "__main__":
             x_cur = x_new
             x_new = x_cur + x_inc
             margin = 10
-            img_trim = image_src[(y_cur + margin):(y_new - margin), 
-                                 (x_cur + margin):(x_new - margin)]
-            cv2.imshow('org_image', img_trim)
-            cv2.waitKey(0)
+            image_part = image_src[(y_cur + margin):(y_new - margin), 
+                                   (x_cur + margin):(x_new - margin)]
+
+            image_part = cv2.resize(image_part, dsize=(28, 28), interpolation=cv2.INTER_LINEAR)
+            image_part = 1 - image_part / 255.
+            image_part[image_part > 0.1] = 1
+            image_part = tf.convert_to_tensor(image_part, dtype=tf.float32)
+            image_part = tf.expand_dims(image_part, 0)
     
+            num_prob = mnist_model.predict(image_part)
+            num_pred = num_prob.argmax(axis=-1)[0]
+            plt.imshow(image_part[0])
+            plt.title(str(num_pred))
+            plt.show()
+            
     cv2.destroyAllWindows()

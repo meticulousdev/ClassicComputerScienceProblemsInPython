@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt
 
 
 plt.rcParams['font.family'] = 'Times New Roman'
+# plt.rcParams["font.weight"] = "bold"
 plt.rcParams.update({'mathtext.default':  'default'})
-plt.rcParams.update({'font.size': 16})
+plt.rcParams.update({'font.size': 28})
 
 
 class Position(NamedTuple):
@@ -38,6 +39,8 @@ if __name__ == "__main__":
         for j in range(0, sudoku_size):
             plt.text(i + 0.4, j + 0.4, str(sudoku[(sudoku_size - 1) - i][j]))
     
-    plt.title(sudoku_title)
+    # plt.title(sudoku_title)
     plt.axis('off')
-    plt.show()
+    plt.savefig('sudoku_board.png')
+    plt.close()
+    
