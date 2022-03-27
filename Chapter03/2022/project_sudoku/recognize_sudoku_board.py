@@ -76,13 +76,15 @@ if __name__ == "__main__":
             image_part = cv2.resize(image_part, dsize=(28, 28), interpolation=cv2.INTER_LINEAR)
             image_part = 1 - image_part / 255.
             image_part[image_part > 0.1] = 1
+            # image_part[image_part < 0.2] = 0
             image_part = tf.convert_to_tensor(image_part, dtype=tf.float32)
             image_part = tf.expand_dims(image_part, 0)
     
             num_prob = mnist_model.predict(image_part)
             num_pred = num_prob.argmax(axis=-1)[0]
-            plt.imshow(image_part[0])
-            plt.title(str(num_pred))
-            plt.show()
+            # plt.figure()
+            # plt.imshow(image_part[0])
+            # plt.title(str(num_pred))
+            # plt.show()
             
     cv2.destroyAllWindows()

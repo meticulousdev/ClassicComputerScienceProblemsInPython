@@ -37,10 +37,9 @@ if __name__ == "__main__":
     
     for i in range(0, sudoku_size):
         for j in range(0, sudoku_size):
-            plt.text(i + 0.4, j + 0.4, str(sudoku[(sudoku_size - 1) - i][j]))
+            plt.text(i + 0.3, j + 0.3, str(sudoku[(sudoku_size - 1) - i][j]))
     
     # plt.title(sudoku_title)
     plt.axis('off')
     plt.savefig('sudoku_board.png')
     plt.close()
-    
