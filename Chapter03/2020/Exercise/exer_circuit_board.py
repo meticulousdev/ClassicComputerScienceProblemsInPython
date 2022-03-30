@@ -5,7 +5,7 @@
 from typing import NamedTuple, Tuple, List, Dict, Optional
 import random
 
-from CP_Chapter03.csp import CSP, Constraint
+from csp import CSP, Constraint
 
 Grid = List[List[str]]
 

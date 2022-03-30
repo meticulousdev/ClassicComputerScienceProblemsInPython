@@ -1,3 +1,4 @@
+# reference: https://youbidan.tistory.com/19
 from typing import List
 
 import cv2
@@ -8,7 +9,11 @@ from keras import models, layers
 import numpy as np
 import matplotlib.pyplot as plt
 
-# reference: https://youbidan.tistory.com/19
+
+plt.rcParams['font.family'] = 'Times New Roman'
+# plt.rcParams["font.weight"] = "bold"
+plt.rcParams.update({'mathtext.default':  'default'})
+plt.rcParams.update({'font.size': 32})
 
 
 if __name__ == "__main__":
@@ -84,7 +89,8 @@ if __name__ == "__main__":
             num_pred = num_prob.argmax(axis=-1)[0]
             # plt.figure()
             # plt.imshow(image_part[0])
-            # plt.title(str(num_pred))
+            # plt.title(f"classification: {str(num_pred)}")
+            # plt.axis('off')
             # plt.show()
             
     cv2.destroyAllWindows()
