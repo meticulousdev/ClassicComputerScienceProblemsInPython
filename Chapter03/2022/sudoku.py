@@ -1,6 +1,6 @@
 # Exercise 3.8 - 3
 # title   : Sudoku
-# version : 2022.03.20.
+# version : 0.2 (2022.03.20.)
 # author  : kobong
 import time
 import random
