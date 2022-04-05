@@ -100,6 +100,9 @@ class WordSearchConstraint(Constraint[str, List[GridLocation]]):
 if __name__ == "__main__":
     grid: Grid = generate_grid(9, 9)
     words: List[str] = ["MATTHEW", "JOE", "MARY", "SARAH", "SALLY"]
+    for i, word in enumerate(words):
+        if choice([True, False]):
+            words[i] = word[::-1]
     # words: List[str] = ["PYTHON", "MYSQL", "GOLANG", "JULIA", "JAVA", "MATLAB"]
     locations: Dict[str, List[List[GridLocation]]] = {}
     for word in words:
@@ -112,8 +115,6 @@ if __name__ == "__main__":
         print("답을 찾을 수 없습니다.")
     else:
         for word, grid_locations in solution.items():
-            # if choice([True, False]):
-            #     grid_locations.reverse()
             for index, letter in enumerate(word):
                 (row, col) = (grid_locations[index].row, grid_locations[index].column)
                 grid[row][col] = letter
