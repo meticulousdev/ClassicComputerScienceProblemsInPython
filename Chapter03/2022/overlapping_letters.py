@@ -1,7 +1,7 @@
 # Exercise 3.8 - 1
 # title   : Word search algorithm with overlapping letters
-# version : 0.2 (2022.04.03)
-# author  : kobong
+# version : 0.2 (2022.04.05)
+# wrong solution
 from typing import NamedTuple, Tuple, List, Dict, Optional
 from random import choice
 from string import ascii_uppercase

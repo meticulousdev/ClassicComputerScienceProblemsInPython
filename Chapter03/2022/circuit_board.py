@@ -16,7 +16,7 @@ class GridLocation(NamedTuple):
 
 
 def generate_grid(rows: int, columns: int) -> Grid:
-    return [["X" for _ in range(columns)] for _ in range(rows)]
+    return [[" " for _ in range(columns)] for _ in range(rows)]
 
 
 def display_grid(grid: Grid) -> None:
@@ -76,40 +76,40 @@ if __name__ == "__main__":
 
     # chip generation and assignment
 
-    # # case 1
-    # chips: List[Tuple[Tuple, Tuple]] = [
-    #                                     # chip A
-    #                                     (("A", "A", "A", "A", "A", "A")),
-    #                                     # chip B
-    #                                     (("B", "B", "B", "B"),
-    #                                      ("B", "B", "B", "B")),
-    #                                     # chip C
-    #                                     (("C", "C", "C"),
-    #                                      ("C", "C", "C"),
-    #                                      ("C", "C", "C")),
-    #                                     # chip D
-    #                                     (("D", "D"),
-    #                                      ("D", "D")),
-    #                                     # chip E
-    #                                     (("E", "E", "E", "E", "E"),
-    #                                      ("E", "E", "E", "E", "E"))]
+    # case 1
+    chips: List[Tuple[Tuple, Tuple]] = [
+                                        # chip A
+                                        (("A", "A", "A", "A", "A", "A")),
+                                        # chip B
+                                        (("B", "B", "B", "B"),
+                                         ("B", "B", "B", "B")),
+                                        # chip C
+                                        (("C", "C", "C"),
+                                         ("C", "C", "C"),
+                                         ("C", "C", "C")),
+                                        # chip D
+                                        (("D", "D"),
+                                         ("D", "D")),
+                                        # chip E
+                                        (("E", "E", "E", "E", "E"),
+                                         ("E", "E", "E", "E", "E"))]
 
     # random case
-    chips: List[Tuple[Tuple, Tuple]] = []
-    candidate: List[str] = ["A", "B", "C", "D", "E"]
-    for i in range(5):
-        row = random.randint(1, 5)
-        col = random.randint(1, 5)
-        temp: Tuple = tuple(candidate[i] for _ in range(col))
+    # chips: List[Tuple[Tuple, Tuple]] = []
+    # candidate: List[str] = ["A", "B", "C", "D", "E"]
+    # for i in range(5):
+    #     row = random.randint(1, 5)
+    #     col = random.randint(1, 5)
+    #     temp: Tuple = tuple(candidate[i] for _ in range(col))
 
-        chip: Tuple = ()
-        for j in range(row):
-            chip = (*chip, temp)
+    #     chip: Tuple = ()
+    #     for j in range(row):
+    #         chip = (*chip, temp)
 
-        print("chip {}".format(candidate[i]))
-        display_chip(chip)
-        chips.append(chip)
-        print()
+    #     print("chip {}".format(candidate[i]))
+    #     display_chip(chip)
+    #     chips.append(chip)
+    #     print()
 
     # location assignment
     locations: Dict[Tuple[Tuple, Tuple], List[List[GridLocation]]] = {}
