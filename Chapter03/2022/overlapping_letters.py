@@ -2,10 +2,17 @@
 # title   : Word search algorithm with overlapping letters
 # version : 0.2 (2022.04.05)
 # wrong solution
-from typing import NamedTuple, Tuple, List, Dict, Optional
+from typing import NamedTuple, List, Dict, Optional
 from random import choice
 from string import ascii_uppercase
+import matplotlib.pyplot as plt
+
 from csp import CSP, Constraint
+
+
+plt.rcParams['font.family'] = 'Times New Roman'
+plt.rcParams.update({'mathtext.default':  'default'})
+plt.rcParams.update({'font.size': 20})
 
 Grid = List[List[str]]
 
@@ -19,9 +26,30 @@ def generate_grid(rows: int, columns: int) -> Grid:
     return [[choice(ascii_uppercase) for c in range(columns)] for r in range(rows)]
 
 
-def display_grid(grid: Grid) -> None:
+def display_grid01(grid: Grid) -> None:
     for row in grid:
         print("".join(row))
+
+
+def display_grid(grid: Grid):
+    height: int = len(grid)
+    width: int = len(grid[0])
+    lb: GridLocation = GridLocation(0, 0)
+    rb: GridLocation = GridLocation(width, 0)
+    lt: GridLocation = GridLocation(0, height)
+
+    plt.figure(figsize=(7, 7))
+    for i in range(0, (height + 1)):
+        plt.plot([lb.row, rb.row], [lb.column + i, rb.column + i], 'k', alpha=0)
+        plt.plot([lb.row + i, lt.row + i], [lb.column, lt.column], 'k', alpha=0)
+    
+    for i in range(0, height):
+        for j in range(0, width):
+            num = grid[(width - 1) - j][i]
+            plt.text(i + 0.4, j + 0.4, str(num))
+    
+    plt.axis('off')
+    plt.show()
 
 
 def generate_domain(word: str, grid: Grid) -> List[List[GridLocation]]:
@@ -32,8 +60,8 @@ def generate_domain(word: str, grid: Grid) -> List[List[GridLocation]]:
 
     for row in range(height):
         for col in range(width):
-            columns: range = range(col, col + length + 1)
-            rows: range = range(row, row + length + 1)
+            columns: range = range(col, col + length)
+            rows: range = range(row, row + length)
             if col + length <= width:
                 domain.append([GridLocation(row, c) for c in columns])
                 if row + length <= height:
@@ -45,29 +73,38 @@ def generate_domain(word: str, grid: Grid) -> List[List[GridLocation]]:
     return domain
 
 
-# Datatype of variables was changed from List[str] to List[Tuple].
-# Tuple is a hashable datatype which can be used to key of dictionary.
-class WordSearchConstraint(Constraint[Tuple, List[GridLocation]]):
-    def __init__(self, words: List[Tuple]) -> None:
+class WordSearchConstraint(Constraint[str, List[GridLocation]]):
+    def __init__(self, words: List[str]) -> None:
         super().__init__(words)
-        self.words: List[Tuple] = words
+        self.words: List[str] = words
 
-    def satisfied(self, assignment: Dict[Tuple, List[GridLocation]]) -> bool:
-        all_locations = [locs for values in assignment.values() for locs in values]
-        return len(set(all_locations)) == len(all_locations)
+    def satisfied(self, assignment: Dict[str, List[GridLocation]]) -> bool:
+        cnt = 0
+        for key01 in assignment.keys():
+            for key02 in assignment.keys():
+                if key01 == key02:
+                    continue
+                
+                for i, locs01 in enumerate(assignment[key01]):
+                    for j, locs02 in enumerate(assignment[key02]):
+                        if locs01 == locs02:
+                            if key01[i] == key02[j]:
+                                cnt += 1
+                                continue
+                            else:
+                                return False
+
+        return True
 
 
 if __name__ == "__main__":
-    grid: Grid = generate_grid(10, 10)
-    words: List[Tuple] = [("PYTHON", 0), ("PYTHON", 1), ("PYTHON", 2), ("PYTHON", 3),
-                          ("JAVA", 0), ("JAVA", 1),
-                          ("MATLAB", 0), ("MATLAB", 1),
-                          ("SWIFT", 0),
-                          ("MYSQL", 0), ("MYSQL", 1)]
-    locations: Dict[Tuple, List[List[GridLocation]]] = {}
+    grid: Grid = generate_grid(9, 9)
+    words: List[str] = ["MATTHEW", "JOE", "MARY", "SARAH", "SALLY"]
+    # words: List[str] = ["PYTHON", "MYSQL", "GOLANG", "JULIA", "JAVA", "MATLAB"]
+    locations: Dict[str, List[List[GridLocation]]] = {}
     for word in words:
-        locations[word] = generate_domain(word[0], grid)
-    csp: CSP[Tuple, List[GridLocation]] = CSP(words, locations)
+        locations[word] = generate_domain(word, grid)
+    csp: CSP[str, List[GridLocation]] = CSP(words, locations)
     csp.add_constraint(WordSearchConstraint(words))
     solution: Optional[Dict[str, List[GridLocation]]] = csp.backtracking_search()
 
@@ -75,9 +112,12 @@ if __name__ == "__main__":
         print("답을 찾을 수 없습니다.")
     else:
         for word, grid_locations in solution.items():
-            if choice([True, False]):
-                grid_locations.reverse()
-            for index, letter in enumerate(word[0]):
+            # if choice([True, False]):
+            #     grid_locations.reverse()
+            for index, letter in enumerate(word):
                 (row, col) = (grid_locations[index].row, grid_locations[index].column)
                 grid[row][col] = letter
+            print(word)
+            print(grid_locations)
+        display_grid01(grid)
         display_grid(grid)
