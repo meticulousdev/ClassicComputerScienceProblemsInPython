@@ -26,11 +26,9 @@ def generate_grid(rows: int, columns: int) -> Grid:
     return [[choice(ascii_uppercase) for c in range(columns)] for r in range(rows)]
 
 
-def display_grid01(grid: Grid) -> None:
-    for row in grid:
-        print("".join(row))
-
-
+# def display_grid01(grid: Grid) -> None:
+#     for row in grid:
+#         print("".join(row))
 def display_grid(grid: Grid):
     height: int = len(grid)
     width: int = len(grid[0])
@@ -118,7 +116,4 @@ if __name__ == "__main__":
             for index, letter in enumerate(word):
                 (row, col) = (grid_locations[index].row, grid_locations[index].column)
                 grid[row][col] = letter
-            print(word)
-            print(grid_locations)
-        display_grid01(grid)
         display_grid(grid)
