@@ -77,7 +77,6 @@ class WordSearchConstraint(Constraint[str, List[GridLocation]]):
         self.words: List[str] = words
 
     def satisfied(self, assignment: Dict[str, List[GridLocation]]) -> bool:
-        cnt = 0
         for key01 in assignment.keys():
             for key02 in assignment.keys():
                 if key01 == key02:
@@ -87,7 +86,6 @@ class WordSearchConstraint(Constraint[str, List[GridLocation]]):
                     for j, locs02 in enumerate(assignment[key02]):
                         if locs01 == locs02:
                             if key01[i] == key02[j]:
-                                cnt += 1
                                 continue
                             else:
                                 return False
