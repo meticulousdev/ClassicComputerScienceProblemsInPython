@@ -95,11 +95,13 @@ class WordSearchConstraint(Constraint[str, List[GridLocation]]):
 
 if __name__ == "__main__":
     grid: Grid = generate_grid(9, 9)
-    words: List[str] = ["MATTHEW", "JOE", "MARY", "SARAH", "SALLY"]
+    # words: List[str] = ["MATTHEW", "JOE", "MARY", "SARAH", "SALLY"]
+    # words: List[str] = ["PYTHON", "MYSQL", "GOLANG", "JULIA", "JAVA", "MATLAB"]
+    words: List[str] = ["MATLAB", "PYTHON", "GOLANG", "JULIA", "BASIC", 
+                        "JAVA", "HTML", "PERL", "RUST", "SWIFT", "RUBY"]
     for i, word in enumerate(words):
         if choice([True, False]):
             words[i] = word[::-1]
-    # words: List[str] = ["PYTHON", "MYSQL", "GOLANG", "JULIA", "JAVA", "MATLAB"]
     locations: Dict[str, List[List[GridLocation]]] = {}
     for word in words:
         locations[word] = generate_domain(word, grid)
