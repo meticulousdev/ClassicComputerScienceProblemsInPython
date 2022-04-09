@@ -3,6 +3,8 @@ from dataclasses import dataclass
 
 
 # undirected graph
+# 정점 vertex: 노드
+# 엣지 edge: 노드 간 연결
 @dataclass
 class Edge:
     u: int  # from vertex u
