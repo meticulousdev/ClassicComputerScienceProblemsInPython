@@ -1,6 +1,6 @@
 from typing import TypeVar, Generic, List, Optional
 from edge import Edge
-from generic_search import bfs, Node, node_to_path
+from generic_search import bfs, dfs, Node, node_to_path
 
 
 V = TypeVar('V')
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     city_graph.add_edge_by_vertices("Philadelphia", "Washington")
     print(city_graph)
 
-    # Path from Boston to Miami
+    # Path from Boston to Miami - bfs
     bfs_result: Optional[Node[V]] = bfs("Boston", lambda x: x == "Miami",
                                         city_graph.neighbors_for_vertex)
 
@@ -114,5 +114,18 @@ if __name__ == "__main__":
         print("No solution found using breadth-first search!")
     else:
         path: List[V] = node_to_path(bfs_result)
-        print("Path from Boston to Miami:")
+        print("Path from Boston to Miami - bfs:")
         print(path)
+    print()
+
+    # Path from Boston to Miami - dfs
+    dfs_result: Optional[Node[V]] = dfs("Boston", lambda x: x == "Miami",
+                                    city_graph.neighbors_for_vertex)
+
+    if bfs_result is None:
+        print("No solution found using depth-first search!")
+    else:
+        path: List[V] = node_to_path(dfs_result)
+        print("Path from Boston to Miami - dfs:")
+        print(path)
+    
