@@ -112,8 +112,7 @@ if __name__ == "__main__":
     print(m)
 
     # dfs
-    solution1: Optional[Node[MazeLocation]] = dfs(
-        m.start, m.goal_test, m.successors)
+    solution1: Optional[Node[MazeLocation]] = dfs(m.start, m.goal_test, m.successors)
 
     if solution1 is None:
         print("깊이 우선 탐색으로 길을 찾을 수 없습니다!")
@@ -125,8 +124,7 @@ if __name__ == "__main__":
         m.clear(path1)
 
     # bfs
-    solution2: Optional[Node[MazeLocation]] = bfs(
-        m.start, m.goal_test, m.successors)
+    solution2: Optional[Node[MazeLocation]] = bfs(m.start, m.goal_test, m.successors)
 
     if solution2 is None:
         print("너비 우선 탐색으로 길을 찾을 수 없습니다!")
@@ -139,8 +137,7 @@ if __name__ == "__main__":
 
     # A* algorithm
     distance: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
-    solution3: Optional[Node[MazeLocation]] = astar(
-        m.start, m.goal_test, m.successors, distance)
+    solution3: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test, m.successors, distance)
 
     if solution3 is None:
         print("A* 알고리즘으로 길을 찾을 수 없습니다!")
