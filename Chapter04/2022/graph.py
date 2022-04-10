@@ -1,5 +1,7 @@
 from typing import TypeVar, Generic, List, Optional
 from edge import Edge
+from generic_search import bfs, Node, node_to_path
+
 
 V = TypeVar('V')
 
@@ -105,8 +107,6 @@ if __name__ == "__main__":
     print(city_graph)
 
     # Path from Boston to Miami
-    from CP_Chapter02.Example.generic_search import bfs, Node, node_to_path
-
     bfs_result: Optional[Node[V]] = bfs("Boston", lambda x: x == "Miami",
                                         city_graph.neighbors_for_vertex)
 
