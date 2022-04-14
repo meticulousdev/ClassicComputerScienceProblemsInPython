@@ -66,4 +66,3 @@ if __name__ == "__main__":
     city_graph2.add_edge_by_vertices("Philadelphia", "Washington", 123)
 
     print(city_graph2)
-
