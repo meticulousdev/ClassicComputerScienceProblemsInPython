@@ -1,11 +1,74 @@
+from platform import node
 from typing import TypeVar, List, Optional
 from weighted_graph import WeightedGraph
 from weighted_edge import WeightedEdge
 from priority_queue import PriorityQueue
 
+from dataclasses import dataclass
+import matplotlib.pyplot as plt
+import copy
+
+
+plt.rcParams['font.family'] = 'Times New Roman'
+# plt.rcParams['font.weight'] = 'bold'
+plt.rcParams.update({'mathtext.default': 'default'})
+plt.rcParams.update({'font.size': 11})
+
+
 V = TypeVar('V')
 WeightedPath = List[WeightedEdge]
 
+
+# NamedTuple X
+@dataclass
+class XYPos:
+    x: int
+    y: int
+
+
+def visualize_tree(wg: WeightedGraph, pq: PriorityQueue):
+    depth = 4
+    num_list = [i for i in range(0, depth) for j in range(0, 2 ** i)]
+    num_list.insert(0, 0)
+    xy: List[XYPos] = [XYPos(0, 0) for _ in range(0, (2 ** depth))]
+    xy[1].x = 128
+    xy[1].y = 2 ** depth
+    for i in range(1, depth * 2):
+        value_x = int(32 / (2 ** (num_list[i] - 1)))
+        value_y = 2 ** (depth - 2)
+        # left
+        if (i * 2) < len(xy):
+            xy[i * 2].x = xy[i].x - value_x
+            xy[i * 2].y = xy[i].y - value_y
+
+        # right
+        if (i * 2 + 1) < len(xy):
+            xy[i * 2 + 1].x = xy[i].x + value_x 
+            xy[i * 2 + 1].y = xy[i].y - value_y
+
+    edges: List[XYPos] = [XYPos(0, 0)]
+    cnt = 1
+    while not pq.empty:
+        edge = pq.pop()
+        x = xy[cnt].x
+        y = xy[cnt].y
+        plt.text(x, y, f"{wg.vertex_at(edge.u)} \n  ↓{edge.weight}\n{wg.vertex_at(edge.v)}")
+        edges.append(xy[cnt])
+        cnt += 1
+
+    for i in range(1, len(edges)): 
+        # left
+        if (i * 2) < len(edges):
+            plt.plot([edges[i].x, edges[i * 2].x], [edges[i].y, edges[i * 2].y], 'b')
+        # right
+        if (i * 2 + 1) < len(edges):   
+            plt.plot([edges[i].x, edges[i * 2 + 1].x], [edges[i].y, edges[i * 2 + 1].y], 'b')
+
+    plt.title("Minimum Spanning Tree\n(Priority Queue)")
+    plt.xlim([0, xy[1].x * 2])
+    plt.ylim([0, xy[1].y + value_y])
+    plt.axis('off')
+    plt.show()
 
 def total_weight(wp: WeightedPath) -> float:
     return sum([e.weight for e in wp])
@@ -62,6 +125,8 @@ def mst(wg: WeightedGraph[V], start: int = 0) -> Optional[WeightedPath]:
                 pq.push(edge)
 
     visit(start)
+    # print(id(pq))
+    visualize_tree(wg, copy.deepcopy(pq))
 
     while not pq.empty:
         edge = pq.pop()
@@ -70,7 +135,7 @@ def mst(wg: WeightedGraph[V], start: int = 0) -> Optional[WeightedPath]:
 
         result.append(edge)
         visit(edge.v)
-
+        visualize_tree(wg, copy.deepcopy(pq))
     return result
 
 
@@ -113,7 +178,7 @@ if __name__ == "__main__":
     city_graph2.add_edge_by_vertices("New York", "Philadelphia", 81)
     city_graph2.add_edge_by_vertices("Philadelphia", "Washington", 123)
 
-    result: Optional[WeightedPath] = mst(city_graph2, 5)
+    result: Optional[WeightedPath] = mst(city_graph2, 0)
     if result is None:
         print("No solution found!")
     else:
