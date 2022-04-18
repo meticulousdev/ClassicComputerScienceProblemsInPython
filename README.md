@@ -27,3 +27,5 @@ https://github.com/meticulousdev/ClassicComputerScienceProblemsInPython/blob/mai
 https://github.com/meticulousdev/ClassicComputerScienceProblemsInPython/blob/main/Chapter04/2022/mst.py
 
 ![2](https://user-images.githubusercontent.com/83524779/163739252-52657c5a-b2b3-4614-8548-53b9c50be089.png)
+
+![mst_images](https://user-images.githubusercontent.com/83524779/163770716-0a9a0c7b-8981-4e3e-b159-1d21f5655f39.gif)
