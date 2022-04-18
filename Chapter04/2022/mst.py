@@ -26,7 +26,7 @@ class XYPos:
     y: int
 
 
-def visualize_tree(wg: WeightedGraph, pq: PriorityQueue):
+def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
     depth = 4
     num_list = [i for i in range(0, depth) for j in range(0, 2 ** i)]
     num_list.insert(0, 0)
@@ -126,7 +126,7 @@ def mst(wg: WeightedGraph[V], start: int = 0) -> Optional[WeightedPath]:
 
     visit(start)
     # print(id(pq))
-    visualize_tree(wg, copy.deepcopy(pq))
+    visualize_priority_queue(wg, copy.deepcopy(pq))
 
     while not pq.empty:
         edge = pq.pop()
@@ -135,7 +135,7 @@ def mst(wg: WeightedGraph[V], start: int = 0) -> Optional[WeightedPath]:
 
         result.append(edge)
         visit(edge.v)
-        visualize_tree(wg, copy.deepcopy(pq))
+        visualize_priority_queue(wg, copy.deepcopy(pq))
     return result
 
 

@@ -113,7 +113,7 @@ def draw_sudoku_board(sudoku: Sudoku,
             if num != 0:
                 plt.text(i + 0.4, j + 0.4, str(num))
     
-    # plt.title(sudoku_title)
+    plt.title(sudoku_title)
     plt.axis('off')
 
 
