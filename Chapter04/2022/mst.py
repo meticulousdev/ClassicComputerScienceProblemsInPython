@@ -64,7 +64,7 @@ def visualize_tree(wg: WeightedGraph, pq: PriorityQueue):
         if (i * 2 + 1) < len(edges):   
             plt.plot([edges[i].x, edges[i * 2 + 1].x], [edges[i].y, edges[i * 2 + 1].y], 'b')
 
-    plt.title("Minimum Spanning Tree\n(Priority Queue)")
+    plt.title("Priority Queue\n(Minimum Spanning Tree)")
     plt.xlim([0, xy[1].x * 2])
     plt.ylim([0, xy[1].y + value_y])
     plt.axis('off')
