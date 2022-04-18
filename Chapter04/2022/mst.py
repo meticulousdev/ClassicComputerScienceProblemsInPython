@@ -26,7 +26,32 @@ class XYPos:
     y: int
 
 
+# author: https://lazymatlab.tistory.com
+def show_result(city_graph: WeightedGraph, wp: WeightedPath) -> None:
+    x = [89,  40,  87, 115, 176, 523, 759, 723, 593, 679, 414, 429, 593, 705, 689]
+    y = [34, 204, 299, 285, 328, 176, 128, 160, 320, 456, 352, 407, 155, 186, 214]
+    
+    plt.subplot(2, 1, 1)
+    for n, coord in enumerate(zip(x, y)):
+        for edge in city_graph._edges[n]:
+            plt.plot([x[edge.u], x[edge.v]], 
+                     [y[edge.u], y[edge.v]], 'k')
+        
+        plt.text(coord[0]+5, coord[1], f'{city_graph._vertices[n]}')
+
+    plt.plot(x, y, 'bo', markersize=8)
+    for edge in wp:
+        xx = [x[edge.u], x[edge.v]]
+        yy = [y[edge.u], y[edge.v]]
+        plt.plot(xx, yy, 'b', linewidth=2)
+    plt.gca().invert_yaxis()
+    plt.title("Metropolitan Statistical Areas")
+    plt.axis('off')
+    # plt.show()
+
+
 def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
+    plt.subplot(2, 1, 2)
     depth = 4
     num_list = [i for i in range(0, depth) for j in range(0, 2 ** i)]
     num_list.insert(0, 0)
@@ -68,7 +93,7 @@ def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
     plt.xlim([0, xy[1].x * 2])
     plt.ylim([0, xy[1].y + value_y])
     plt.axis('off')
-    plt.show()
+    # plt.show()
 
 def total_weight(wp: WeightedPath) -> float:
     return sum([e.weight for e in wp])
@@ -126,8 +151,12 @@ def mst(wg: WeightedGraph[V], start: int = 0) -> Optional[WeightedPath]:
 
     visit(start)
     # print(id(pq))
+    plt.figure(figsize=(8, 10))
     visualize_priority_queue(wg, copy.deepcopy(pq))
-
+    show_result(wg, result)
+    # plt.show()
+    idx = 0
+    plt.savefig('msa_mst_' + str(idx) + '.png')
     while not pq.empty:
         edge = pq.pop()
         if visited[edge.v]:
@@ -135,7 +164,12 @@ def mst(wg: WeightedGraph[V], start: int = 0) -> Optional[WeightedPath]:
 
         result.append(edge)
         visit(edge.v)
+        plt.figure(figsize=(8, 10))
         visualize_priority_queue(wg, copy.deepcopy(pq))
+        show_result(wg, result)
+        idx = idx + 1
+        plt.savefig('msa_mst_' + str(idx) + '.png')
+        # plt.show()
     return result
 
 
@@ -183,3 +217,4 @@ if __name__ == "__main__":
         print("No solution found!")
     else:
         print_weighted_path(city_graph2, result)
+        show_result(city_graph2, result)
