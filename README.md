@@ -6,7 +6,7 @@
 
 3.8 연습문제
 
-- 3 제약 충족 문제 해결 프레임워크를 이용하여 스도쿠 문제를 해결할 수 있는 프로그램을 작성하라.
+3. 제약 충족 문제 해결 프레임워크를 이용하여 스도쿠 문제를 해결할 수 있는 프로그램을 작성하라.
 
 - 스도쿠 문제의 해결 및 스도쿠 보드 시각화
 https://github.com/meticulousdev/ClassicComputerScienceProblemsInPython/blob/main/Chapter03/2022/sudoku.py
