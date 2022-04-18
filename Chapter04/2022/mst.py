@@ -34,7 +34,7 @@ def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
     xy[1].x = 2 ** (depth + 3)
     xy[1].y = 2 ** depth
     for i in range(1, depth * 2):
-        value_x = int(64 / (2 ** (num_list[i])))
+        value_x = int((xy[1].x / 2) / (2 ** (num_list[i])))
         value_y = 2 ** (depth - 2)
         # left
         if (i * 2) < len(xy):
