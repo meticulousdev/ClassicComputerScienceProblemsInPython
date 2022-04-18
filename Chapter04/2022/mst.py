@@ -35,7 +35,8 @@ def show_result(city_graph: WeightedGraph, wp: WeightedPath) -> None:
     for n, coord in enumerate(zip(x, y)):
         for edge in city_graph._edges[n]:
             plt.plot([x[edge.u], x[edge.v]], 
-                     [y[edge.u], y[edge.v]], 'k')
+                     [y[edge.u], y[edge.v]],
+                     'k', alpha=0.2)
         
         plt.text(coord[0]+5, coord[1], f'{city_graph._vertices[n]}')
 
@@ -45,7 +46,7 @@ def show_result(city_graph: WeightedGraph, wp: WeightedPath) -> None:
         yy = [y[edge.u], y[edge.v]]
         plt.plot(xx, yy, 'b', linewidth=2)
     plt.gca().invert_yaxis()
-    plt.title("Metropolitan Statistical Areas")
+    plt.title("Metropolitan Statistical Areas\n(Minimum Spanning Tree)")
     plt.axis('off')
     # plt.show()
 
@@ -89,7 +90,7 @@ def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
         if (i * 2 + 1) < len(edges):   
             plt.plot([edges[i].x, edges[i * 2 + 1].x], [edges[i].y, edges[i * 2 + 1].y], 'b')
 
-    plt.title("Priority Queue\n(Minimum Spanning Tree)")
+    plt.title("Priority Queue")
     plt.xlim([0, xy[1].x * 2])
     plt.ylim([0, xy[1].y + value_y])
     plt.axis('off')
@@ -151,12 +152,14 @@ def mst(wg: WeightedGraph[V], start: int = 0) -> Optional[WeightedPath]:
 
     visit(start)
     # print(id(pq))
-    plt.figure(figsize=(8, 10))
-    visualize_priority_queue(wg, copy.deepcopy(pq))
-    show_result(wg, result)
-    # plt.show()
-    idx = 0
-    plt.savefig('msa_mst_' + str(idx) + '.png')
+
+    # visualize
+    # plt.figure(figsize=(8, 10))
+    # visualize_priority_queue(wg, copy.deepcopy(pq))
+    # show_result(wg, result)
+    # idx = 0
+    # plt.savefig('msa_mst_' + str(idx) + '.png')
+
     while not pq.empty:
         edge = pq.pop()
         if visited[edge.v]:
@@ -164,12 +167,12 @@ def mst(wg: WeightedGraph[V], start: int = 0) -> Optional[WeightedPath]:
 
         result.append(edge)
         visit(edge.v)
-        plt.figure(figsize=(8, 10))
-        visualize_priority_queue(wg, copy.deepcopy(pq))
-        show_result(wg, result)
-        idx = idx + 1
-        plt.savefig('msa_mst_' + str(idx) + '.png')
-        # plt.show()
+
+        # plt.figure(figsize=(8, 10))
+        # visualize_priority_queue(wg, copy.deepcopy(pq))
+        # show_result(wg, result)
+        # idx = idx + 1
+        # plt.savefig('msa_mst_' + str(idx) + '.png')
     return result
 
 
