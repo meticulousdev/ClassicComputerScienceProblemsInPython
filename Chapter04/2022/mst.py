@@ -31,10 +31,10 @@ def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
     num_list = [i for i in range(0, depth) for j in range(0, 2 ** i)]
     num_list.insert(0, 0)
     xy: List[XYPos] = [XYPos(0, 0) for _ in range(0, (2 ** depth))]
-    xy[1].x = 128
+    xy[1].x = 2 ** (depth + 3)
     xy[1].y = 2 ** depth
     for i in range(1, depth * 2):
-        value_x = int(32 / (2 ** (num_list[i] - 1)))
+        value_x = int(64 / (2 ** (num_list[i])))
         value_y = 2 ** (depth - 2)
         # left
         if (i * 2) < len(xy):
