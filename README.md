@@ -2,6 +2,15 @@
 
 모든 자료의 내용은 "고전 컴퓨터 알고리즘 인 파이썬" 상의 내용을 참고하여 작성되었습니다.
 
+3장 제약 충족 문제
+
+3.8 연습문제
+
+- 스도쿠 문제의 해결 및 스도쿠 보드 시각화
+https://github.com/meticulousdev/ClassicComputerScienceProblemsInPython/blob/main/Chapter03/2022/sudoku.py
+
+![sodoku](https://user-images.githubusercontent.com/83524779/163752718-ad870b69-a73a-4b7d-a4de-bb496ced1a38.png)
+
 4장 그래프 문제
 
 4.4 네트워크 구축 비용 최소화
