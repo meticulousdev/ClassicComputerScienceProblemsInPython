@@ -1,8 +1,6 @@
-# 고전 컴퓨터 알고리즘 인 파이썬
+# 고전 컴퓨터 알고리즘 인 파이썬 (Classic Computer Science Problems in Python)
 
 - 모든 자료의 내용은 "고전 컴퓨터 알고리즘 인 파이썬; 데이비드 코펙 지음, 최길우 옮김; 한빛미디어 (2019)" 상의 내용을 기반으로 작성되었습니다.
-
-(원제 : Classic Computer Science Problems in Python 1st Edition)
 
 ## 3장 제약 충족 문제
 
