@@ -20,7 +20,7 @@ WeightedPath = List[WeightedEdge]
 
 
 # NamedTuple - X
-# dataclass  - X
+# dataclass  - O
 @dataclass
 class XYPos:
     x: int
