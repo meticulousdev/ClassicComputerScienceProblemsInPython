@@ -19,7 +19,8 @@ V = TypeVar('V')
 WeightedPath = List[WeightedEdge]
 
 
-# NamedTuple X
+# NamedTuple - X
+# dataclass  - X
 @dataclass
 class XYPos:
     x: int
@@ -53,14 +54,18 @@ def show_result(city_graph: WeightedGraph, wp: WeightedPath) -> None:
 
 def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
     plt.subplot(2, 1, 2)
+
+    # initialize position calculation list
     depth = 4
-    num_list = [i for i in range(0, depth) for j in range(0, 2 ** i)]
-    num_list.insert(0, 0)
+    pos_list = [i for i in range(0, depth) for j in range(0, 2 ** i)]
+    pos_list.insert(0, 0)
+
+    # priority queue (tree position)
     xy: List[XYPos] = [XYPos(0, 0) for _ in range(0, (2 ** depth))]
     xy[1].x = 2 ** (depth + 3)
     xy[1].y = 2 ** depth
     for i in range(1, depth * 2):
-        value_x = int((xy[1].x / 2) / (2 ** (num_list[i])))
+        value_x = int((xy[1].x / 2) / (2 ** (pos_list[i])))
         value_y = 2 ** (depth - 2)
         # left
         if (i * 2) < len(xy):
@@ -72,6 +77,8 @@ def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
             xy[i * 2 + 1].x = xy[i].x + value_x 
             xy[i * 2 + 1].y = xy[i].y - value_y
 
+    # plot each node (edge information)
+    # convert priority queue to list
     edges: List[XYPos] = [XYPos(0, 0)]
     cnt = 1
     while not pq.empty:
@@ -82,6 +89,7 @@ def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
         edges.append(xy[cnt])
         cnt += 1
 
+    # plot branch
     for i in range(1, len(edges)): 
         # left
         if (i * 2) < len(edges):
