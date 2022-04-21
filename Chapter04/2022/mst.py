@@ -27,7 +27,7 @@ class XYPos:
     y: int
 
 
-# author: https://lazymatlab.tistory.com
+# author: keizikang / https://keizikang.github.io/
 def show_result(city_graph: WeightedGraph, wp: WeightedPath) -> None:
     x = [89,  40,  87, 115, 176, 523, 759, 723, 593, 679, 414, 429, 593, 705, 689]
     y = [34, 204, 299, 285, 328, 176, 128, 160, 320, 456, 352, 407, 155, 186, 214]
