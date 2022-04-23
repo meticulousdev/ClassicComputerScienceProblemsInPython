@@ -1,4 +1,3 @@
-from platform import node
 from typing import TypeVar, List, Optional
 from weighted_graph import WeightedGraph
 from weighted_edge import WeightedEdge
@@ -6,7 +5,6 @@ from priority_queue import PriorityQueue
 
 from dataclasses import dataclass
 import matplotlib.pyplot as plt
-import copy
 
 
 plt.rcParams['font.family'] = 'Times New Roman'
@@ -107,7 +105,8 @@ def visualize_priority_queue(wg: WeightedGraph, pq: PriorityQueue):
 def total_weight(wp: WeightedPath) -> float:
     return sum([e.weight for e in wp])
 
-    
+
+# visit in the outside of mst
 # def visit(index: int, visited: List[bool], wg: WeightedGraph, pq: PriorityQueue) -> None:
 #     visited[index] = True
 #     for edge in wg.edges_for_index(index):
