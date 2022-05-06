@@ -33,7 +33,7 @@ class NamedGraph(Generic[V], Graph[V]):
 
 
 if __name__ == "__main__":
-    # test basic Graph construction
+    # test Konigsberg Graph construction
     # land - A, B, C, D
     # bridge - a, b, c, d, e, f, g
     graph_Konigsberg: NamedGraph[str] = NamedGraph(["A", "B", "C", "D",
