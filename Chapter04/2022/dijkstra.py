@@ -21,6 +21,19 @@ class DijkstraNode:
         return self.distance == other.distance
 
 
+# Dijkstra's algorithm
+# 1. Add the starting vertex to a priority queue.
+# 2. Pop the closest vertex from the priority queue (at the beginning, 
+# this is just the starting vertex); we'll call it the current vertex.
+# 3. Look at all of the neighbors connected to the current vertex. 
+# If they have not previously been recorded, 
+# or if the edge offers a new shortest path to them, 
+# then for each of them record its distance from the start, 
+# record the edge that produced this distance, 
+# and add the new vertex to the priority queue.
+# 4. Repeat steps 2 and 3 until the priority queue is empty.
+# 5. Return the shortest distance to every vertex from the starting vertex 
+# and the path to get to each of them.
 def dijkstra(wg: WeightedGraph[V],
              root: V) -> Tuple[List[Optional[float]], Dict[int, WeightedEdge]]:
     first: int = wg.index_of(root)
@@ -52,7 +65,8 @@ def distance_array_to_vertex_dict(wg: WeightedGraph[V],
     return distance_dict
 
 
-def path_dict_to_path(start: int, end: int, path_dict: Dict[int, WeightedEdge]) -> WeightedPath:
+def path_dict_to_path(start: int, end: int, 
+                      path_dict: Dict[int, WeightedEdge]) -> WeightedPath:
     if len(path_dict) == 0:
         return []
     edge_path: WeightedPath = []
