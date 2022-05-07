@@ -57,7 +57,8 @@ def binary_contains(sequence: Sequence[C], key: C) -> bool:
 # end of function binary_contains
 
 
-# TODO: @property 
+# TODO: @property
+# First In Last Out 
 class Stack(Generic[T]):
     def __init__(self) -> None:
         self._container: List[T] = []
@@ -77,6 +78,7 @@ class Stack(Generic[T]):
 # end of Stack
 
 
+# First In First Out 
 class Queue(Generic[T]):
     def __init__(self) -> None:
         # Error?
