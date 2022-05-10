@@ -3,13 +3,14 @@ from typing import TypeVar, List, Optional
 from named_graph import NamedGraph
 from named_edge import NamedEdge
 
-from generic_search import Stack
+from generic_search import Stack, Queue
 
 
 V = TypeVar('V')
 NamedPath = List[NamedEdge]
 
 
+# failed to find solution
 def eulerian_trail(ng: NamedGraph[V], vi: List[str], start: int = 0) -> Optional[NamedPath]:
     if start > (ng.vertex_count - 1) or start < 0:
         return None
@@ -32,7 +33,7 @@ def eulerian_trail(ng: NamedGraph[V], vi: List[str], start: int = 0) -> Optional
                 sk.push(edge)
 
     visit(start)
-    
+
     while not sk.empty:
         edge = sk.pop()
         if visited[edge.v]:
