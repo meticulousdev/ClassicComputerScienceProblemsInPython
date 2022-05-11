@@ -1,6 +1,6 @@
 # Exercise 4.7 - 2
 from typing import TypeVar, Generic, List, Optional
-from CP_Chapter04.Example.edge import Edge
+from edge import Edge
 
 V = TypeVar('V')
 
