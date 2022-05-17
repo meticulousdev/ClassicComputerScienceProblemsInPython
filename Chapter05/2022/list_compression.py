@@ -54,8 +54,7 @@ if __name__ == "__main__":
     ga: GeneticAlgorithm[ListCompression] = GeneticAlgorithm(initial_population=initial_population,
                                                              threshold=1.0, max_generations=100,
                                                              mutation_chance=0.2, crossover_chance=0.7,
-                                                             selection_type
-                                                             =GeneticAlgorithm.SelectionType.TOURNAMENT)
+                                                             selection_type=GeneticAlgorithm.SelectionType.TOURNAMENT)
 
     result: ListCompression = ga.run()
     print(result)

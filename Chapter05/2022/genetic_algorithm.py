@@ -16,11 +16,12 @@ class GeneticAlgorithm(Generic[C]):
                  mutation_chance: float = 0.01, crossover_chance: float = 0.7,
                  selection_type: SelectionType = SelectionType.TOURNAMENT) -> None:
         self._population: List[C] = initial_population
-        self._threshold: float = threshold  # 적합도 수준
-        self._max_generation: int = max_generations  # 실행할 최대 세대 수
-        self._mutation_chance: float = mutation_chance  # 돌연변이될 확률
-        self._crossover_chance: float = crossover_chance  # 재생산할때 부모의 염색체가 자식 염색체에 섞일 확률
+        self._threshold: float = threshold  
+        self._max_generation: int = max_generations 
+        self._mutation_chance: float = mutation_chance 
+        self._crossover_chance: float = crossover_chance 
         self._selection_type: GeneticAlgorithm.SelectionType = selection_type
+        # TODO type(self._population[0]).fitness
         self._fitness_key: Callable = type(self._population[0]).fitness
 
     def _pick_roulette(self, wheel: List[float]) -> Tuple[C, C]:
@@ -48,7 +49,7 @@ class GeneticAlgorithm(Generic[C]):
             new_population.pop()
         self._population = new_population
 
-    # individual에 들어가 있는게 일시적이지 않네
+    # TODO individual - python: call by object-reference (or call by assignment)
     def _mutate(self) -> None:
         for individual in self._population:
             if random() < self._mutation_chance:
