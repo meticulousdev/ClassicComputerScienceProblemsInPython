@@ -10,6 +10,9 @@ C = TypeVar('C', bound=Chromosome)
 
 
 class GeneticAlgorithm(Generic[C]):
+    # How to use Enum
+    # comple signature Enum(value='value', names='names', ...)
+    # Enum members: This can be a whitespace or comma separated string
     SelectionType = Enum("SelectionType", "ROULETTE TOURNAMENT")
 
     def __init__(self, initial_population: List[C], threshold: float, max_generations: int = 100,
@@ -21,7 +24,8 @@ class GeneticAlgorithm(Generic[C]):
         self._mutation_chance: float = mutation_chance 
         self._crossover_chance: float = crossover_chance 
         self._selection_type: GeneticAlgorithm.SelectionType = selection_type
-        # TODO type(self._population[0]).fitness
+        # type(self._population[0]).fitness
+        # ingeritance: type or isinstance
         self._fitness_key: Callable = type(self._population[0]).fitness
 
     def _pick_roulette(self, wheel: List[float]) -> Tuple[C, C]:
