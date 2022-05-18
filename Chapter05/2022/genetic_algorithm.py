@@ -1,13 +1,16 @@
 from __future__ import annotations
 from typing import TypeVar, Generic, List, Tuple, Callable
 from enum import Enum
-from random import choices, random
+from random import choices, random, seed
 from heapq import nlargest
 from statistics import mean
 from chromosome import Chromosome
 
 C = TypeVar('C', bound=Chromosome)
 
+
+# random.seed
+# seed(42)
 
 class GeneticAlgorithm(Generic[C]):
     # How to use Enum
