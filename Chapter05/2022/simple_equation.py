@@ -18,13 +18,16 @@ class SimpleEquation(Chromosome):
     def random_instance(cls) -> SimpleEquation:
         return SimpleEquation(randrange(100), randrange(100))
 
-    # 왜 y만을 crossover 하는지?
-    # crossover는 x를 하나 y를 하나 상관이 없나?
+    # TODO Why do we conduct crossover for only y?
     def crossover(self, other: SimpleEquation) -> Tuple[SimpleEquation, SimpleEquation]:
         child1: SimpleEquation = deepcopy(self)
         child2: SimpleEquation = deepcopy(other)
         child1.y = other.y
         child2.y = self.y
+
+        # child1.x = other.x
+        # child2.x = self.x
+
         return child1, child2
 
     def mutate(self) -> None:
