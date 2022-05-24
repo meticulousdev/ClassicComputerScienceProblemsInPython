@@ -12,6 +12,7 @@ C = TypeVar('C', bound=Chromosome)
 # random.seed
 seed(42)
 
+
 class GeneticAlgorithm(Generic[C]):
     # How to use Enum
     # comple signature Enum(value='value', names='names', ...)
