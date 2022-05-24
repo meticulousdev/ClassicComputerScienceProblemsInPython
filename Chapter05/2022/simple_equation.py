@@ -18,7 +18,12 @@ class SimpleEquation(Chromosome):
     def random_instance(cls) -> SimpleEquation:
         return SimpleEquation(randrange(100), randrange(100))
 
-    # TODO Why do we conduct crossover for only y?
+    # Why do we conduct crossover for only y?
+    # child1.y = other.y
+    # child2.y = self.y
+    # child1.x = other.x
+    # child2.x = self.x
+    # swap : child1 -> child2 & child2 -> child1
     def crossover(self, other: SimpleEquation) -> Tuple[SimpleEquation, SimpleEquation]:
         child1: SimpleEquation = deepcopy(self)
         child2: SimpleEquation = deepcopy(other)
