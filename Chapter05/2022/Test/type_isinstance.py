@@ -43,25 +43,6 @@ if __name__ == "__main__":
     print(f"type(your_computer): {type(your_computer)}")
     print()
 
-    print(f"type(my_computer).get_battery_info: {type(my_computer).get_battery_info}")
-    print(f"my_computer.get_battery_info      : {my_computer.get_battery_info}")
-    print()
-
-    print("type(my_computer).get_battery_info(my_computer):")
-    type(my_computer).get_battery_info(my_computer)
-    print()
-    print("my_computer.get_battery_info()      :")
-    my_computer.get_battery_info()
-    print()
-
-    print("type(my_computer).get_battery_info(your_computer):")
-    type(my_computer).get_battery_info(your_computer)
-    print()
-    # error
-    # print("my_computer.get_battery_info(your_computer)      :")
-    # my_computer.get_battery_info(your_computer)
-    # print()
-
     print(f"type(my_computer) == Computer: {type(my_computer) == Computer}")
     print(f"type(my_computer) == Desktop : {type(my_computer) == Desktop}")
     print(f"type(my_computer) == Laptop  : {type(my_computer) == Laptop}")
@@ -70,4 +51,23 @@ if __name__ == "__main__":
     print(f"isinstance(my_computer, Computer): {isinstance(my_computer, Computer)}")
     print(f"isinstance(my_computer, Desktop) : {isinstance(my_computer, Desktop)}")
     print(f"isinstance(my_computer, Laptop)  : {isinstance(my_computer, Laptop)}")
+    print()
+
+    print(f"type(my_computer).get_battery_info: {type(my_computer).get_battery_info}")
+    print(f"my_computer.get_battery_info      : {my_computer.get_battery_info}")
+    print()
+
+    print("type(my_computer).get_battery_info(my_computer):")
+    type(my_computer).get_battery_info(my_computer)
+    print()
+    print("my_computer.get_battery_info():")
+    my_computer.get_battery_info()
+    print()
+
+    print("type(my_computer).get_battery_info(your_computer):")
+    type(my_computer).get_battery_info(your_computer)
+    print()
+    # error
+    print("my_computer.get_battery_info(your_computer): error")
+    # my_computer.get_battery_info(your_computer)
     print()
