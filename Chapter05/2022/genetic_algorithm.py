@@ -15,7 +15,7 @@ seed(42)
 
 class GeneticAlgorithm(Generic[C]):
     # How to use Enum
-    # comple signature Enum(value='value', names='names', ...)
+    # complete signature: Enum(value='value', names='names', ...)
     # Enum members: This can be a whitespace or comma separated string
     SelectionType = Enum("SelectionType", "ROULETTE TOURNAMENT")
 
@@ -29,7 +29,7 @@ class GeneticAlgorithm(Generic[C]):
         self._crossover_chance: float = crossover_chance 
         self._selection_type: GeneticAlgorithm.SelectionType = selection_type
         # type(self._population[0]).fitness
-        # ingeritance: type or isinstance
+        # inheritance: type or isinstance
         self._fitness_key: Callable = type(self._population[0]).fitness
 
     def _pick_roulette(self, wheel: List[float]) -> Tuple[C, C]:
