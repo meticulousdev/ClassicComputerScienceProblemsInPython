@@ -36,8 +36,8 @@ class Laptop(Computer):
 
 
 if __name__ == "__main__":
-    my_computer: Laptop = Laptop('AMD Laptop','AMD Rygen 5', 'Radeon', 'ABC Battery')
-    your_computer: Laptop = Laptop('Intel Laptop','Intel i5', 'RTX 3060', 'DEF Battery')
+    my_computer: Laptop = Laptop('AMD Laptop', 'AMD Rygen 5', 'Radeon', 'ABC Battery')
+    your_computer: Laptop = Laptop('Intel Laptop', 'Intel i5', 'RTX 3060', 'DEF Battery')
 
     print(f"type(my_computer)  : {type(my_computer)}")
     print(f"type(your_computer): {type(your_computer)}")
