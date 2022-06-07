@@ -24,6 +24,12 @@ class ListCompression(Chromosome):
     def fitness(self) -> float:
         return 1 / self.bytes_compressed
 
+    # @staticmethod
+    # def random_instance(self) -> ListCompression:
+    #     mylst: List[str] = deepcopy(PEOPLE)
+    #     shuffle(mylst)
+    #     return ListCompression(mylst)
+
     @classmethod
     def random_instance(cls) -> ListCompression:
         mylst: List[str] = deepcopy(PEOPLE)
