@@ -7,7 +7,7 @@ class Computer:
         self.cpu_name = cpu_name
         self.gpu_name = gpu_name
 
-    def get_info(self):
+    def get_computer_info(self):
         print(f"name    : {self.name}")
         print(f"cpu name: {self.cpu_name}")
         print(f"gpu name: {self.gpu_name}")
@@ -18,8 +18,8 @@ class Desktop(Computer):
         super().__init__(name, cpu_name, gpu_name)
         self.power_name = power_name
 
-    def get_power_info(self):
-        super().get_info()
+    def get_desktop_info(self):
+        super().get_computer_info()
         print(f"power info: {self.power_name}")
 
 
@@ -30,8 +30,8 @@ class Laptop(Computer):
         self.gpu_name = gpu_name
         self.battery_name = battery_name
 
-    def get_battery_info(self):
-        super().get_info()
+    def get_laptop_info(self):
+        super().get_computer_info()
         print(f"battery info: {self.battery_name}")
 
 
@@ -53,24 +53,26 @@ if __name__ == "__main__":
     print(f"isinstance(my_computer, Laptop)  : {isinstance(my_computer, Laptop)}")
     print()
 
-    print(f"type(my_computer).get_battery_info: {type(my_computer).get_battery_info}")
-    print(f"my_computer.get_battery_info      : {my_computer.get_battery_info}")
+    print(f"type(my_computer).get_laptop_info: {type(my_computer).get_laptop_info}")
+    print(f"my_computer.get_laptop_info      : {my_computer.get_laptop_info}")
     print()
 
-    print("type(my_computer).get_battery_info(my_computer):")
-    type(my_computer).get_battery_info(my_computer)
+    print("type(my_computer).get_laptop_info(my_computer):")
+    type(my_computer).get_laptop_info(my_computer)
     print()
-    print("my_computer.get_battery_info():")
-    my_computer.get_battery_info()
+    print("my_computer.get_laptop_info():")
+    my_computer.get_laptop_info()
     print()
 
-    print("type(my_computer).get_battery_info(your_computer):")
-    type(my_computer).get_battery_info(your_computer)
+    print("Laptop.get_laptop_info(your_computer):")
+    Laptop.get_laptop_info(your_computer)
     print()
-    print("Laptop.get_battery_info(your_computer):")
-    Laptop.get_battery_info(your_computer)
+
+    print("type(my_computer).get_laptop_info(your_computer):")
+    type(my_computer).get_laptop_info(your_computer)
     print()
+
     # error
-    print("my_computer.get_battery_info(your_computer): error")
-    # my_computer.get_battery_info(your_computer)
+    print("my_computer.get_laptop_info(your_computer): error")
+    # my_computer.get_laptop_info(your_computer)
     print()
