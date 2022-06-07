@@ -67,6 +67,9 @@ if __name__ == "__main__":
     print("type(my_computer).get_battery_info(your_computer):")
     type(my_computer).get_battery_info(your_computer)
     print()
+    print("Laptop.get_battery_info(your_computer):")
+    Laptop.get_battery_info(your_computer)
+    print()
     # error
     print("my_computer.get_battery_info(your_computer): error")
     # my_computer.get_battery_info(your_computer)
