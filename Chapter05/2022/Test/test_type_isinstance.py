@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Computer:
     def __init__(self, name: str, cpu_name: str, gpu_name: str):
         self.name = name
