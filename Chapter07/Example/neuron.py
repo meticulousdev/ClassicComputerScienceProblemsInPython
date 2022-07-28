@@ -1,5 +1,5 @@
 from typing import List, Callable
-from CP_Chapter07.Example.util import dot_product
+from util import dot_product
 
 
 class Neuron:

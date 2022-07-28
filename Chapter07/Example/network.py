@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import List, Callable, TypeVar, Tuple
 from functools import reduce
-from CP_Chapter07.Example.layer import Layer
-from CP_Chapter07.Example.util import sigmoid, derivative_sigmoid
+from layer import Layer
+from util import sigmoid, derivative_sigmoid
 
 T = TypeVar('T')
 

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import List, Callable, Optional
 from random import random
-from CP_Chapter07.Example.neuron import Neuron
-from CP_Chapter07.Example.util import dot_product
+from neuron import Neuron
+from util import dot_product
 
 
 class Layer:
