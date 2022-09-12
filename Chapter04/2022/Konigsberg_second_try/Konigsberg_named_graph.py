@@ -10,10 +10,18 @@ V = TypeVar('V')
 NamedPath = List[NamedEdge]
 
 
-def eulerian_trail(ng: NamedGraph[V], vi: List[str], start: int = 0) -> Optional[NamedPath]:
-    # bfs dfs
-    result = 1
-    return result
+class Konigsberg:
+    def __init__(self, 
+                 start: NamedGraph[str], 
+                 goal: NamedGraph[str]) -> None:
+        self.start = start
+        self.goal = goal
+    
+    def goal_test(self) -> bool:
+        return True
+    
+    def successors(self):
+        print()
 
 
 def print_named_path(ng: NamedGraph, np: NamedPath) -> None:
