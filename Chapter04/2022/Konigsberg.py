@@ -7,13 +7,14 @@ from csp import Constraint, CSP
 V = TypeVar('V')
 
 
-# TODO csp ?
 class Konigsberg(Constraint[str, str]):
+    # TODO __init__
     def __init__(self, lands: str, bridges: str) -> None:
         super().__init__([lands, bridges])
         self.lands: str = lands
         self.bridges: str = bridges
 
+    # TODO satisfied
     def satisfied(self, assignment: Dict[str, str]) -> bool:
         test: Dict[str, str]
         return test
@@ -22,6 +23,14 @@ class Konigsberg(Constraint[str, str]):
 if __name__ == "__main__":
     lands: List[str] = ["A", "B", "C", "D"]
     bridges: List[str] = ["a", "b", "c", "d", "e", "f", "g"]
+
+    # TODO variables & domains
+    variables: List[str] = lands + bridges
+    domains: Dict[str, List[str]] = {}
+
+    for variable in variables:
+        domains[variable] = ["???"]
+
     graph_total: List[str] = lands + bridges
     graph_Konigsberg: Graph[str] = Graph(graph_total)
 
