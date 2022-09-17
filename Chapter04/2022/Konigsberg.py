@@ -15,23 +15,18 @@ class Konigsberg(Constraint[str, str]):
         self.bridges: str = bridges
 
     # TODO satisfied
+    # 
     def satisfied(self, assignment: Dict[str, str]) -> bool:
         test: Dict[str, str]
         return test
 
 
 if __name__ == "__main__":
-    lands: List[str] = ["A", "B", "C", "D"]
+    # [1] Graph
+    nodes: List[str] = ["A", "B", "C", "D"]
     bridges: List[str] = ["a", "b", "c", "d", "e", "f", "g"]
 
-    # TODO variables & domains
-    variables: List[str] = lands + bridges
-    domains: Dict[str, List[str]] = {}
-
-    for variable in variables:
-        domains[variable] = ["???"]
-
-    graph_total: List[str] = lands + bridges
+    graph_total: List[str] = nodes + bridges
     graph_Konigsberg: Graph[str] = Graph(graph_total)
 
     graph_Konigsberg.add_edge_by_vertices("A", "a")
@@ -51,5 +46,27 @@ if __name__ == "__main__":
     graph_Konigsberg.add_edge_by_vertices("D", "e")
     graph_Konigsberg.add_edge_by_vertices("D", "f")
     graph_Konigsberg.add_edge_by_vertices("D", "g")
-    
+
+    print("Konigsberg - Graph") 
     print(graph_Konigsberg)
+
+    # [2] CSP
+    # TODO variables & domains
+    # variables가 nodes + bridges일 경우 도메인은?
+    # variables: List[str] = nodes + bridges
+    # domains: Dict[str, List[str]] = {}
+
+    # for variable in variables:
+    #     domains[variable] = ["???"]
+
+    # variables가 nodes인 경우
+    # domains는 노드에 연결된 bridges
+    variables: List[str] = nodes
+    domains: Dict[str, List[str]] = {}
+
+    for i, node in enumerate(nodes):
+        domains[node] = graph_Konigsberg.neighbors_for_index(i)
+
+    print("Konigsberg - variables and domains") 
+    print(variables)
+    print(domains)
