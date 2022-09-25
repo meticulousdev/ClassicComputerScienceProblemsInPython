@@ -9,13 +9,16 @@ V = TypeVar('V')
 
 class Konigsberg(Constraint[str, str]):
     # TODO __init__
+    # 1. land1 land2
+    # 2. land - bridge
     def __init__(self, lands: str, bridges: str) -> None:
         super().__init__([lands, bridges])
         self.lands: str = lands
         self.bridges: str = bridges
 
     # TODO satisfied
-    # 
+    # 1. 별도의 visited 사용
+    # 2. 삭제를 해서 다리를 건넜음을 확인 
     def satisfied(self, assignment: Dict[str, str]) -> bool:
         test: Dict[str, str]
         return test
@@ -50,6 +53,8 @@ if __name__ == "__main__":
     print("Konigsberg - Graph") 
     print(graph_Konigsberg)
 
+    # TODO [2] bfs dfs - 이거부터 다시 생각해보기 
+
     # [2] CSP
     # TODO variables & domains
     # variables가 nodes + bridges일 경우 도메인은?
@@ -70,3 +75,6 @@ if __name__ == "__main__":
     print("Konigsberg - variables and domains") 
     print(variables)
     print(domains)
+
+    # TODO CSP[str, List[str]]
+    csp: CSP[str, List[str]] = CSP(variables, domains)
