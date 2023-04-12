@@ -89,6 +89,7 @@ if __name__ == "__main__":
 
     print("Generator and Fibonacci      : ", end="")
     time_start = time.time()
-    print(fib6(num))
+    for i in fib6(num):
+        print(i)
     time_end = time.time()
     print(f"Generator and Fibonacci took : {time_end - time_start}s\n")
