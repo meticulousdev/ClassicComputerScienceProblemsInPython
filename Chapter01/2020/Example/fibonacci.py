@@ -1,7 +1,8 @@
 # %%
-from typing import Dict, Tuple
+from typing import Dict
 from functools import lru_cache
 from typing import Generator
+import time
 
 
 # %%
@@ -58,21 +59,36 @@ def fib6(n: int) -> Generator[int, None, None]:
 
 # %%
 if __name__ == "__main__":
-    # fib2(5)  -> 15
-    # fib2(10) -> 177
-    # fib2(20) -> 21,891
-    num: int = 5
+    num: int = 40
 
-    print("***** Fibonacci : {} *****". format(num))
-    print("Simple Fibonacci        : fib2")
-    print("Memoization             : fib3")
-    print("Memoization decorator   : fib4")
-    print("Simple for loop         : fib5 ")
-    print("Generator and Fibonacci : fib6")
-    print()
-
+    print(f"***** Fibonacci              : {num} *****\n")
+    
+    print("Simple Fibonacci             : ", end="")
+    time_start = time.time()
     print(fib2(num))
+    time_end = time.time()
+    print(f"Simple Fibonacci took        : {time_end - time_start}s\n")
+
+    print("Memoization                  : ", end="")
+    time_start = time.time()
     print(fib3(num))
+    time_end = time.time()
+    print(f"Memoization took             : {time_end - time_start}s\n")    
+
+    print("Memoization decorator        : ", end="")
+    time_start = time.time()
     print(fib4(num))
+    time_end = time.time()
+    print(f"Memoization took             : {time_end - time_start}s\n")    
+
+    print("Simple for loop              : ", end="")
+    time_start = time.time()
     print(fib5(num))
+    time_end = time.time()
+    print(f"Simple for loop took         : {time_end - time_start}s\n")    
+
+    print("Generator and Fibonacci      : ", end="")
+    time_start = time.time()
     print(fib6(num))
+    time_end = time.time()
+    print(f"Generator and Fibonacci took : {time_end - time_start}s\n")
